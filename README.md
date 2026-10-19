@@ -1,4 +1,4 @@
-# 
+# ![Security Pipeline](https://github.com/mohammed23010/juice-shop-security-pipeline/actions/workflows/security.yml/badge.svg)
 
 # Every push to `main` triggers all three scans in parallel. Results are uploaded
 
