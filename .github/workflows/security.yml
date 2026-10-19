@@ -12,7 +12,6 @@ permissions:
   issues: write
 
 jobs:
-  # ---------- SCA: Dependency & Image Scanning ----------
   sca-trivy:
     name: SCA - Trivy Filesystem Scan
     runs-on: ubuntu-latest
@@ -36,7 +35,6 @@ jobs:
           name: trivy-report
           path: trivy-report.txt
 
-  # ---------- SAST: Static Code Analysis ----------
   sast-semgrep:
     name: SAST - Semgrep Scan
     runs-on: ubuntu-latest
@@ -56,7 +54,6 @@ jobs:
           name: semgrep-report
           path: semgrep.sarif
 
-  # ---------- DAST: Dynamic Scan against running app ----------
   dast-zap:
     name: DAST - OWASP ZAP Baseline
     runs-on: ubuntu-latest
@@ -71,8 +68,9 @@ jobs:
           sleep 40
 
       - name: Run ZAP Baseline Scan
-                uses: zaproxy/action-baseline@v0.14.0
+        uses: zaproxy/action-baseline@v0.14.0
         with:
           target: 'http://localhost:3000'
           cmd_options: '-a'
           fail_action: false
+          allow_issue_writing: false
